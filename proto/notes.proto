@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option go_package = "grpc/proto";
+
+message CreateNote {
+    string title =2;
+    string description = 3;
+}
+
+message CreateNoteRes {
+    int32 id =1;
+}
+
+service NoteService {
+    rpc CreateNotesUnary( CreateNote) returns ( CreateNoteRes) {};
+    rpc CreateNotesClientStream(stream CreateNote) returns ( CreateNoteRes) {};
+    rpc CreateNotesServerStream(CreateNote) returns ( stream CreateNoteRes) {};
+    rpc CreateNotesBdirectional(stream CreateNote) returns ( stream CreateNoteRes) {};
+    //rpc DeleteNotes(CreateNote) returns (CreateNoteRes) {};
+}
+
+
+service StudentService {
+    rpc StudentUnary( CreateNote) returns ( CreateNoteRes) {};
+    rpc StudentClientStream(stream CreateNote) returns ( CreateNoteRes) {};
+    rpc StudentServerStream(CreateNote) returns ( stream CreateNoteRes) {};
+    rpc StudentBdirectional(stream CreateNote) returns ( stream CreateNoteRes) {};
+    //rpc DeleteNotes(CreateNote) returns (CreateNoteRes) {};
+}
